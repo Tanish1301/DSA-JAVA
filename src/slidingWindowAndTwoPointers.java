@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class slidingWindowAndTwoPointers {
 
     public static int maxLength(int[] arr, int maxSum) {
@@ -48,4 +51,43 @@ public class slidingWindowAndTwoPointers {
         return maxLent;
     }
 
+    public static int lengthOfLongestSubstringKDistinct(String str, int k) {
+        Map<Character, Integer> freq = new HashMap<>();
+        int left = 0;
+        int maxLen = 0;
+
+
+        for (int right = 0; right < str.length(); right++){
+            freq.put(str.charAt(right), freq.getOrDefault(str.charAt(right), 0)+ 1);
+            while (freq.size() > k){
+                char c = str.charAt(left);
+                freq.put(c, freq.get(c)-1);
+                if (freq.get(c) == 0){
+                    freq.remove(c);
+                }
+                left++;
+            }
+            maxLen = Math.max(maxLen, right-left+1);
+        }
+        return maxLen;
+    }
+
+
+    public static int longestSubstringWithoutRepeatingChars(String str){
+        Map<Character, Integer> freq = new HashMap<>();
+        int left = 0;
+        int maxLen = 0;
+
+        for (int right = 0; right < str.length(); right++){
+            char c = str.charAt(right);
+            freq.put(c, freq.getOrDefault(c,0)+1);
+            while (freq.get(c) > 1){
+                char l = str.charAt(left);
+                freq.put(l, freq.get(l)-1);
+                left++;
+            }
+            maxLen = Math.max(maxLen, right-left+1);
+        }
+        return maxLen;
+    }
 }

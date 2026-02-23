@@ -9,6 +9,13 @@ public class Main {
         System.out.println("Maximum subarray length with sum as maxSum = " + slidingWindowAndTwoPointers.maxLength(arr, maxSum));
         System.out.println("Maximum consecutive ones = "  + slidingWindowAndTwoPointers.maxConsecutiveOnes(arr2, 2));
 
+
+        String str = "dedehaa";
+        System.out.println("Length of longest substring with K chars is " + slidingWindowAndTwoPointers.lengthOfLongestSubstringKDistinct(str, 2));
+
+        String str2 = "cadbzabcd";
+        System.out.println("Length of longest substring without repeating chars is " + slidingWindowAndTwoPointers.longestSubstringWithoutRepeatingChars(str2));
+
     }
 
 
