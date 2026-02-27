@@ -90,4 +90,36 @@ public class slidingWindowAndTwoPointers {
         }
         return maxLen;
     }
+
+    public static int subStringCountWithMinKChars(String str){
+         int cnt = 0;
+         Map<Character, Integer> freq = new HashMap<>();
+         char[] ch = str.toCharArray();
+         for (int i = 0; i < ch.length; i++){
+             freq.put(str.charAt(i), i);
+             if(freq.size() >= 3){
+                 int minIndex = freq.values().stream().min(Integer::compare).get();
+                 cnt += (minIndex + 1) ;
+             }
+         }
+        return cnt;
+    }
+
+    public static int lSumRSum(int[] arr, int k){
+        int lSum = 0;
+        int RSum = 0;
+        int fSum = 0;
+        int n = arr.length;
+
+        for (int i = 0; i < k; i++){
+            lSum = lSum + arr[i];
+        }
+        for (int j = 1; j < k; j++) {
+            lSum = lSum - arr[k-j];
+            RSum = RSum + arr[n-j];
+            fSum = Math.max(fSum, lSum + RSum);
+        }
+
+        return fSum;
+    }
 }
